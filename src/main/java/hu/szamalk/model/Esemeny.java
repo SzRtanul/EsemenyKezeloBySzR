@@ -19,4 +19,36 @@ public class Esemeny implements Cloneable{
         id = UUID.randomUUID();
         szereplok = new HashSet<>();
     }
+
+    public boolean add(){
+        return false;
+    }
+
+    public boolean change(){
+        return false;
+    }
+
+    public boolean delete(){
+        return false;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getNev() {
+        return nev;
+    }
+
+    public String getLeiras() {
+        return leiras;
+    }
+
+    public Timestamp getIdopont() {
+        return idopont;
+    }
+
+    public HashSet<Szereplo> getSzereplok() {
+        return szereplok;
+    }
 }
