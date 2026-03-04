@@ -7,18 +7,18 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Esemenyek {
-    private HashSet<Esemeny> esemenyek;
+    private Set<Esemeny> esemenyek;
 
     public Esemenyek(){
         esemenyek = new HashSet<>();
     }
 
-    boolean add(Esemeny esemeny){
+    public boolean add(Esemeny esemeny){
         return esemenyek.add(esemeny);
     }
 
-    boolean delete(UUID id){
-        return false;
+    public boolean delete(UUID id){
+        return esemenyek.removeIf(x->x.getId() == id);
     }
 
     public Esemeny get(UUID id){
@@ -30,6 +30,12 @@ public class Esemenyek {
     }
 
     public Set<Esemeny> getAll(){
-        return null;
+        return new HashSet<Esemeny>(esemenyek);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
+//Kész

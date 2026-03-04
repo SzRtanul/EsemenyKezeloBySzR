@@ -39,19 +39,8 @@ public class Szereplo  implements Cloneable{
     }
 
     @Override
-    public Szereplo clone(){
-        Szereplo a = null;
-        try {
-            a = (Szereplo)super.clone();
-        }
-        catch (CloneNotSupportedException ex){
-            //return null;
-        }
-        return a;
-    }
-
-    @Override
     public String toString() {
         return super.toString();
     }
 }
+//Kész

@@ -1,8 +1,11 @@
 package hu.szamalk.model;
 
-import jdk.jfr.Timestamp;
 
+
+import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 public class Esemeny implements Cloneable{
@@ -10,7 +13,7 @@ public class Esemeny implements Cloneable{
     private String nev;
     private String leiras;
     private Timestamp idopont;
-    private HashSet<Szereplo> szereplok;
+    private Set<Szereplo> szereplok;
 
     public Esemeny(String nev, String leiras, Timestamp idopont) {
         this.nev = nev;
@@ -20,16 +23,12 @@ public class Esemeny implements Cloneable{
         szereplok = new HashSet<>();
     }
 
-    public boolean add(){
-        return false;
+    public boolean add(Szereplo szereplo){
+        return szereplok.add(szereplo);
     }
 
-    public boolean change(){
-        return false;
-    }
-
-    public boolean delete(){
-        return false;
+    public boolean delete(UUID id){
+        return szereplok.removeIf(x -> x.getId() == id);
     }
 
     public UUID getId() {
@@ -49,6 +48,24 @@ public class Esemeny implements Cloneable{
     }
 
     public HashSet<Szereplo> getSzereplok() {
-        return szereplok;
+        return new HashSet<Szereplo>(szereplok);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Esemeny esemeny = (Esemeny) o;
+        return Objects.equals(id, esemeny.id) && Objects.equals(nev, esemeny.nev) && Objects.equals(leiras, esemeny.leiras) && Objects.equals(idopont, esemeny.idopont);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nev, leiras, idopont);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
+//Kész
