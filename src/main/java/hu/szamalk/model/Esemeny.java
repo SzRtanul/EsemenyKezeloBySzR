@@ -13,22 +13,32 @@ public class Esemeny implements Cloneable{
     private String nev;
     private String leiras;
     private Timestamp idopont;
-    private Set<Szereplo> szereplok;
+    private Szereplo szervezo;
+    private int status = 0;
 
-    public Esemeny(String nev, String leiras, Timestamp idopont) {
+    public Esemeny(Szereplo szervezo, String nev, String leiras, Timestamp idopont) {
         this.nev = nev;
         this.leiras = leiras;
         this.idopont = idopont;
-        id = UUID.randomUUID();
-        szereplok = new HashSet<>();
+        this.id = UUID.randomUUID();
+        this.szervezo = szervezo;
+
     }
 
-    public boolean add(Szereplo szereplo){
-        return szereplok.add(szereplo);
+    public boolean setNev(String nev) {
+        boolean both = status < 1;
+        if(both) this.nev = nev;
+        return both;
     }
 
-    public boolean delete(UUID id){
-        return szereplok.removeIf(x -> x.getId() == id);
+    public void setLeiras(String leiras) {
+        this.leiras = leiras;
+    }
+
+    public boolean setIdopont(Timestamp idopont) {
+        boolean both = status < 2;
+        if(both) this.idopont = idopont;
+        return both;
     }
 
     public UUID getId() {
@@ -47,20 +57,20 @@ public class Esemeny implements Cloneable{
         return idopont;
     }
 
-    public HashSet<Szereplo> getSzereplok() {
-        return new HashSet<Szereplo>(szereplok);
+    public int getStatus(){
+        return status;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Esemeny esemeny = (Esemeny) o;
-        return Objects.equals(id, esemeny.id) && Objects.equals(nev, esemeny.nev) && Objects.equals(leiras, esemeny.leiras) && Objects.equals(idopont, esemeny.idopont);
+        return Objects.equals(id, esemeny.id) && Objects.equals(nev, esemeny.nev) && Objects.equals(leiras, esemeny.leiras) && Objects.equals(idopont, esemeny.idopont) && Objects.equals(szervezo, esemeny.szervezo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nev, leiras, idopont);
+        return Objects.hash(id);
     }
 
     @Override
