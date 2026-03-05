@@ -7,22 +7,26 @@ public class EsemenyV {
 
 
     public String scInp(){
+        System.out.print("Művelet száma: ");
         return sc.nextLine();
     }
 
 
-    public String kezdolap(){
+    public void doKezdolap(){
+        String out = "A használható parancsok a help parancs segítségével heleníthetőek meg.";
+        System.out.println(out);
+
+    }
+
+    public void doHelp(String[] parancsok){
         String out = "";
-        System.out.println(this.help());
-        System.out.print("Művelet száma: ");
-        return scInp();
+        for(int i = 0; i < parancsok.length; i+=2){
+            out += parancsok[i] + ": " + parancsok[i+1] + "\n";
+        }
+        System.out.println(out);
     }
 
-    public String help(){
-        return "";
-    }
+    public void doError(){
 
-    public String error(){
-        return "";
     }
 }
